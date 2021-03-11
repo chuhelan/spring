@@ -1,7 +1,0 @@
-com\chuhelan\ioc\bean\MyBean.class
-com\chuhelan\scope\Scope.class
-com\chuhelan\domain\Bean.class
-com\chuhelan\staticFactory\MyBeanFactory.class
-com\chuhelan\factory\MyBean2Factory.class
-com\chuhelan\ioc\config\IoCConfig.class
-com\chuhelan\scope\ScopeTest.class
