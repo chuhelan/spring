@@ -1,0 +1,12 @@
+com\chuhelan\demo\UserDaoImpl.class
+com\chuhelan\ioc\dao\TestDao.class
+com\chuhelan\demo\TestIoc.class
+com\chuhelan\ioc\config\TestAnnotation.class
+com\chuhelan\ioc\config\IocConfig.class
+com\chuhelan\ioc\dao\TestDaoImpl.class
+com\chuhelan\ioc\config\service\TestServiceImpl.class
+com\chuhelan\ioc\config\service\TestService.class
+com\chuhelan\demo\UserDao.class
+com\chuhelan\demo\UserServiceImpl.class
+com\chuhelan\demo\UserDaoTest.class
+com\chuhelan\demo\UserService.class

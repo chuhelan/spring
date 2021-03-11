@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!---->
+    <bean id="bean" class="com.chuhelan.domain.Bean"/>
+
+    <!--使用静态工厂实例化Bean-->
+    <bean id="bean2" class="com.chuhelan.staticFactory.MyBeanFactory"
+          factory-method="createBean"/>
+
+    <!--  实例化工厂方式实例  -->
+    <!--配置工厂-->
+    <bean id="myBean2Factory" class="com.chuhelan.factory.MyBean2Factory"/>
+    <!--  使用工厂属性指向配置的实例工厂，使用factory-Method属性指定使用工厂的哪个方法  -->
+    <bean id="bean3" factory-bean="myBean2Factory" factory-method="createBean"/>
+
+</beans>
