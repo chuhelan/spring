@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <!--利用p-命名空间实现setter方法注入装配bean实例-->
+    <bean id="phone4" class="com.chuhelan.domain.Phone" p:brand="三星" p:price="6000"/>
+
+    <!--通过setter方法注入装配bean实例-->
+    <bean id="phone3" class="com.chuhelan.domain.Phone">
+        <property name="brand" value="小米"/>
+        <property name="price" value="1500"/>
+    </bean>
+
+    <!--利用c-命名空间实现构造方法注入装配bean实例-->
+    <bean id="phone2" class="com.chuhelan.domain.Phone" c:brand="苹果" c:price="7000"/>
+
+    <!--等价于下面方法 ⬇  -->
+
+    <!--通过构造方法注入装配bean实例-->
+    <bean id="phone1" class="com.chuhelan.domain.Phone">
+        <constructor-arg index="0" value="华为"/>
+        <constructor-arg index="1" value="5000"/>
+    </bean>
+
+    <bean id="stu1" class="com.chuhelan.domain.Student"
+          c:name="小明" c:gender="男" c:phone-ref="phone2">
+        <constructor-arg>
+            <list>
+                <value>游泳</value>
+                <value>阅读</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <util:list id="hobbyList">
+        <value>电影</value>
+        <value>音乐</value>
+    </util:list>
+
+    <bean id="stu2" class="com.chuhelan.domain.Student"
+          p:name="小刚"
+          p:gender="女"
+          p:phone-ref="phone4"
+          p:hobby-ref="hobbyList">
+    </bean>
+
+</beans>
