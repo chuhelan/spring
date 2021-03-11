@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>  
+        <Console name="Console" target="SYSTEM_OUT">  
+            <PatternLayout charset="UTF-8" pattern="日志 %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />  
+        </Console>  
+		<RollingFile name="log" fileName="logs/myLog.log" filePattern="logs/spring-%d{yyyy-MM-dd}.log"
+                     append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS Z}\t%-5level\t%class\t%line\t%thread\t%msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <!-- 此行以下为自动清理日志的配置 -->
+            <DefaultRolloverStrategy>
+                <Delete basePath="./logs">
+                    <!-- glob 项为需要自动清理日志的pattern -->
+                    <IfFileName glob="*.log"/>
+                    <!-- 30d 表示自动清理掉30天以前的日志文件 -->
+                    <IfLastModified age="1d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+            <!-- 此行以上为自动清理日志的配置 -->
+        </RollingFile>		
+    </Appenders>  
+
+    <Loggers>  
+        <Root level="info">  
+            <AppenderRef ref="Console" />  
+			<AppenderRef ref="log" />
+        </Root>  
+    </Loggers>  
+</Configuration>
