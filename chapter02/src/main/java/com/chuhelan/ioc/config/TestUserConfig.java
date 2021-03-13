@@ -1,7 +1,6 @@
 package com.chuhelan.ioc.config;
 
 import com.chuhelan.ioc.bean.User;
-import com.chuhelan.ioc.bean.UserStaticFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
