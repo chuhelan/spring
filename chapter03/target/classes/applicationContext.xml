@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--启用自动代理-->
+    <aop:aspectj-autoproxy/>
+
+    <bean id="hello" class="com.chuhelan.dao.HelloImpl"/>
+    <bean id="myBefore" class="com.chuhelan.advice.HelloBefore"/>
+
+    <aop:config proxy-target-class="true">
+        <aop:aspect id="before" ref="myBefore">
+            <aop:pointcut id="myPointcut" expression="execution(* com.chuhelan.dao.*.*(..))"/>
+            <aop:before method="beforeMethod" pointcut-ref="myPointcut"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!--waiter-->
+    <bean id="target" class="com.chuhelan.dao.NaiveWaiter"/>
+    <bean id="advice" class="com.chuhelan.advice.GreetingBeforeAdvice"/>
+    <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.chuhelan.dao.Waiter"/>
+        <property name="target" ref="target"/>
+        <property name="interceptorNames" value="advice"/>
+    </bean>
+
+
+    <!-- 1 目标类 -->
+    <bean id="userDao" class="com.chuhelan.jdk.UserDaoImpl"/>
+    <!-- 2 切面类 -->
+    <bean id="myAspect" class="com.chuhelan.factorybean.MyAspect"/>
+    <!-- 使用Spring代理工厂定义一个名为userDaoProxy的代理对象-->
+    <bean id="userDaoProxy"
+          class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 3.1 指定代理实现的接口 -->
+        <property name="proxyInterfaces" value="com.chuhelan.jdk.UserDao"/>
+        <!-- 3.2 指定目标对象-->
+        <property name="target" ref="userDao"/>
+        <!-- 3.3 指定切面，植入环绕通知 -->
+        <property name="interceptorNames" value="myAspect"/>
+        <!-- 3.4 指定代理方式, true: 使用cglib，false（默认）： 使用jdk动态代理-->
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+
+</beans>
