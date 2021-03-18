@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--定义目标类-->
+    <bean id="userDao" class="com.chuhelan.jdk.UserDaoImpl"/>
+    <!--定义切面-->
+    <bean id="myUserAdvice" class="com.chuhelan.advice.MyUserAdvice"/>
+    <!--开启aspectj自动代理-->
+    <aop:aspectj-autoproxy/>
+    <!--AOP配置-->
+    <aop:config>
+        <aop:aspect ref="myUserAdvice">
+            <!--配置切入点-->
+            <aop:pointcut id="myPointCut" expression="execution(* com.chuhelan.jdk.UserDao.*(..))"/>
+            <!--关联通知和切入点-->
+            <aop:before method="before" pointcut-ref="myPointCut"/>
+            <aop:after-returning method="after" pointcut-ref="myPointCut"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

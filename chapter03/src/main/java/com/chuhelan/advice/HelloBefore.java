@@ -14,6 +14,6 @@ import org.springframework.stereotype.Component;
 public class HelloBefore {
     @Before("execution(* com.chuhelan.dao.Hello.*(..))")
     public void beforeMethod(){
-        System.out.println("This is a before method......");
+//        System.out.println("This is a before method......");
     }
 }

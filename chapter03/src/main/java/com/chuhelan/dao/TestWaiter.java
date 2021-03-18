@@ -1,19 +1,19 @@
 package com.chuhelan.dao;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @description:
  * @author: chuhelan
- * @create: 2021-03-16 10:28
+ * @create: 2021-03-18 13:48
  **/
 
-public class TestProxy {
+public class TestWaiter {
     public static void main(String[] args) {
-        ApplicationContext ac =
+        ClassPathXmlApplicationContext ac =
                 new ClassPathXmlApplicationContext("applicationContext.xml");
-        Waiter proxy = (Waiter) ac.getBean("Proxy");
-        proxy.serveTo("Tom");
+        Waiter waiter = ac.getBean("Proxy",Waiter.class);
+        waiter.greetTo("John");
+        ac.close();
     }
 }

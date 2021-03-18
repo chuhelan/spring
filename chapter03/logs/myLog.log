@@ -1,2 +1,33 @@
-2021-03-16 09:55:53.041 +0800	INFO 	org.springframework.test.context.support.AbstractTestContextBootstrapper	245	main	Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2021-03-16 09:55:53.059 +0800	INFO 	org.springframework.test.context.support.AbstractTestContextBootstrapper	174	main	Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@302f7971, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@332729ad, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@75d2da2d, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4278284b, org.springframework.test.context.event.EventPublishingTestExecutionListener@9573584]
+2021-03-18 13:41:42.116 +0800	INFO 	org.springframework.test.context.support.AbstractTestContextBootstrapper	245	main	Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-03-18 13:41:42.143 +0800	INFO 	org.springframework.test.context.support.AbstractTestContextBootstrapper	174	main	Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@282cb7c7, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@7d898981, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@48d61b48, org.springframework.test.context.support.DirtiesContextTestExecutionListener@68d279ec, org.springframework.test.context.event.EventPublishingTestExecutionListener@258d79be]
+2021-03-18 14:15:52.232 +0800	INFO 	com.chuhelan.advice.GreetingBeforeAdvice	20	main	向顾客Tom说再见！
+2021-03-18 14:15:52.235 +0800	INFO 	com.chuhelan.advice.GreetingBeforeAdvice	20	main	向顾客Tom说再见！
+2021-03-18 14:16:34.656 +0800	WARN 	org.springframework.context.support.AbstractApplicationContext	590	main	Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [com.chuhelan.advice.GreetingAfterAdviceAdvice] for bean with name 'afterAdvice' defined in class path resource [applicationContext.xml]; nested exception is java.lang.ClassNotFoundException: com.chuhelan.advice.GreetingAfterAdviceAdvice
+2021-03-18 14:16:49.176 +0800	INFO 	com.chuhelan.advice.GreetingBeforeAdvice	20	main	向顾客Tom说再见！
+2021-03-18 14:16:49.194 +0800	INFO 	com.chuhelan.advice.GreetingAfterAdvice	22	main	向顾客Tom说再见！
+2021-03-18 14:18:58.351 +0800	INFO 	com.chuhelan.advice.GreetingBeforeAdvice	20	main	向顾客Tom说再见！
+2021-03-18 14:18:58.365 +0800	INFO 	com.chuhelan.advice.GreetingAfterAdvice	22	main	向顾客Tom说再见！
+2021-03-18 14:19:21.594 +0800	INFO 	com.chuhelan.advice.GreetingBeforeAdvice	20	main	向顾客John说再见！
+2021-03-18 14:19:21.611 +0800	INFO 	com.chuhelan.advice.GreetingAfterAdvice	22	main	向顾客John说再见！
+2021-03-18 14:20:22.287 +0800	INFO 	com.chuhelan.advice.GreetingBeforeAdvice	20	main	向顾客John说再见！
+2021-03-18 14:20:22.304 +0800	INFO 	com.chuhelan.advice.GreetingAfterAdvice	22	main	向顾客John说再见！
+2021-03-18 14:20:26.327 +0800	INFO 	com.chuhelan.advice.GreetingBeforeAdvice	20	main	向顾客John说再见！
+2021-03-18 14:20:26.343 +0800	INFO 	com.chuhelan.advice.GreetingAfterAdvice	22	main	向顾客John说再见！
+2021-03-18 14:25:01.221 +0800	INFO 	com.chuhelan.advice.GreetingBeforeAdvice	20	main	向顾客John说再见！
+2021-03-18 14:25:01.243 +0800	INFO 	com.chuhelan.advice.GreetingAfterAdvice	22	main	向顾客John说再见！
+2021-03-18 14:54:51.719 +0800	INFO 	com.chuhelan.advice.MyUserAdvice	21	main	前置通知：模拟权限检查.......
+2021-03-18 14:54:51.724 +0800	INFO 	com.chuhelan.advice.MyUserAdvice	22	main	目标类：com.chuhelan.jdk.UserDaoImpl@435871cb，植入的目标方法：addUser
+2021-03-18 14:54:51.725 +0800	INFO 	com.chuhelan.advice.MyUserAdvice	26	main	后置通知：关闭数据库资源.......
+2021-03-18 14:54:51.725 +0800	INFO 	com.chuhelan.advice.MyUserAdvice	27	main	目标类：com.chuhelan.jdk.UserDaoImpl@435871cb，植入的目标方法：addUser
+2021-03-18 14:54:51.776 +0800	INFO 	com.chuhelan.advice.MyUserAdvice	21	main	前置通知：模拟权限检查.......
+2021-03-18 14:54:51.777 +0800	INFO 	com.chuhelan.advice.MyUserAdvice	22	main	目标类：com.chuhelan.jdk.UserDaoImpl@2b43529a，植入的目标方法：deleteUser
+2021-03-18 14:54:51.778 +0800	INFO 	com.chuhelan.advice.MyUserAdvice	26	main	后置通知：关闭数据库资源.......
+2021-03-18 14:54:51.778 +0800	INFO 	com.chuhelan.advice.MyUserAdvice	27	main	目标类：com.chuhelan.jdk.UserDaoImpl@2b43529a，植入的目标方法：deleteUser
+2021-03-18 15:08:02.453 +0800	INFO 	com.chuhelan.advice.MyUserAdvice01	33	main	前置通知：模拟权限检查.......
+2021-03-18 15:08:02.457 +0800	INFO 	com.chuhelan.advice.MyUserAdvice01	34	main	目标类：com.chuhelan.jdk.UserDaoImpl@2002348，植入的目标方法：addUser
+2021-03-18 15:08:02.458 +0800	INFO 	com.chuhelan.advice.MyUserAdvice01	39	main	后置通知：关闭数据库资源.......
+2021-03-18 15:08:02.458 +0800	INFO 	com.chuhelan.advice.MyUserAdvice01	40	main	目标类：com.chuhelan.jdk.UserDaoImpl@2002348，植入的目标方法：addUser
+2021-03-18 15:08:02.458 +0800	INFO 	com.chuhelan.advice.MyUserAdvice01	33	main	前置通知：模拟权限检查.......
+2021-03-18 15:08:02.458 +0800	INFO 	com.chuhelan.advice.MyUserAdvice01	34	main	目标类：com.chuhelan.jdk.UserDaoImpl@2002348，植入的目标方法：deleteUser
+2021-03-18 15:08:02.458 +0800	INFO 	com.chuhelan.advice.MyUserAdvice01	39	main	后置通知：关闭数据库资源.......
+2021-03-18 15:08:02.459 +0800	INFO 	com.chuhelan.advice.MyUserAdvice01	40	main	目标类：com.chuhelan.jdk.UserDaoImpl@2002348，植入的目标方法：deleteUser
