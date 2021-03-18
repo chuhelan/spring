@@ -15,6 +15,6 @@
     <context:component-scan base-package="com.chuhelan"/>
     <!--开启aspectj的注解-->
     <aop:aspectj-autoproxy/>
-
+    <bean id="userDap" class="com.chuhelan.jdk.UserDaoImpl"/>
 
 </beans>
