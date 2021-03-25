@@ -24,6 +24,12 @@
             <version>1.9.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.18</version>
+        </dependency>
+
         <!-- log4j-core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
