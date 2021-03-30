@@ -5,6 +5,7 @@ import com.chuhelan.mapper.UserRowMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -84,11 +85,15 @@ public class UserDaoImpl implements UserDao {
         return n;
     }
 
-    @Override
     public List<User> getAllUser() {
         String sql = "SELECT * from t_user";
-        return jdbcTemplate.query(sql, new UserRowMapper());
+// return jdbcTemplate.query(sql, new UserRowMapper());
+// 如果列名和属性名都是相同的，也可以直接使用BeanPropertyRowMapper，如果不一样
+// 则使用自己定义的UserRowMapper
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>
+                (User.class));
     }
+
 
     @Override
     public User getUserById(Integer id) {
