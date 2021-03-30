@@ -15,5 +15,6 @@ public class TestUserDao01 {
         UserDao userDao = ac.getBean("userDao",UserDao.class);
         userDao.addUser();
         userDao.deleteUser();
+        userDao.insertUser();
     }
 }

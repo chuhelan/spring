@@ -19,4 +19,9 @@ public class UserDaoImpl implements UserDao{
     public void deleteUser() {
         System.out.println("删除用户");
     }
+
+    @Override
+    public void insertUser() {
+        System.out.println("添加用户");
+    }
 }

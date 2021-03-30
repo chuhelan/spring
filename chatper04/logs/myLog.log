@@ -1,0 +1,4 @@
+2021-03-3008:24:29[main:0]-[INFO]{dataSource-1} inited
+2021-03-3008:24:29[main:205]-[INFO]后台存储数据：User{id=19, account='aaa', password='111'}
+2021-03-3008:24:29[SpringContextShutdownHook:221]-[INFO]{dataSource-1} closing ...
+2021-03-3008:24:29[SpringContextShutdownHook:240]-[INFO]{dataSource-1} closed
