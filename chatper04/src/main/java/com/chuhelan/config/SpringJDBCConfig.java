@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
@@ -71,4 +72,18 @@ return myDataSource;
     public JdbcTemplate getJdbcTemplate() {
         return new JdbcTemplate(dataSource());
     }
+
+    /**
+     * 为数据源添加事务管理器
+     *
+     * @return
+     */
+    @Bean
+    public DataSourceTransactionManager transactionManager() {
+        DataSourceTransactionManager dt = new
+                DataSourceTransactionManager();
+        dt.setDataSource(dataSource());
+        return dt;
+    }
+
 }
