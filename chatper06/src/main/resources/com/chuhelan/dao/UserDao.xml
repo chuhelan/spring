@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuhelan.dao.UserDao">
+    <select id="findAll" resultType="com.chuhelan.domain.User">
+        select * from t_user
+    </select>
+    <!--  #{}表示占位符，相当于? -->
+    <select id="findUserById" resultType="com.chuhelan.domain.User" parameterType="integer">
+        select * from t_user where id = #{id}
+    </select>
+    <update id="updateUser" parameterType="com.chuhelan.domain.User">
+        update t_user set username=#{username} ,birthday=#{birthday},sex=#{sex},address=#{address} where id=#{id}
+    </update>
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.chuhelan.domain.User">
+        insert into t_user values(null,#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <delete id="deleteUserById" parameterType="com.chuhelan.domain.User">
+        delete from t_user where id = #{id}
+    </delete>
+
+    <select id="findByMap" resultType="com.chuhelan.domain.User">
+        select * from t_user where id=#{id} and username=#{username}
+    </select>
+
+</mapper>

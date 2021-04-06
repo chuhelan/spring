@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--加载数据库配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!--自定义扫描包-->
+    <context:component-scan base-package="edu.niit.dao"/>
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+        <!--驱动名称-->
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <!--JDBC连接串-->
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <!--数据库用户名称-->
+        <property name="username" value="${jdbc.username}"/>
+        <!--数据库密码-->
+        <property name="password" value="${jdbc.password}"/>
+        <!--连接最大时间 -->
+        <property name="maxLifetime" value="30000"/>
+        <!-- 连接池最大使用连接数量 -->
+        <property name="maximumPoolSize" value="10" />
+        <!-- 连接池最小空闲 -->
+        <property name="minimumIdle" value="1" />
+        <!--此属性控制从池返回的连接的默认自动提交行为,默认值：true-->
+        <property name="autoCommit" value="true"/>
+        <!--个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟-->
+        <property name="idleTimeout" value="20000"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="connectionTimeout" value="60000" />
+    </bean>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+          p:dataSource-ref="dataSource"/>
+
+    <!-- 1 事务管理器,依赖于数据源-->
+    <bean  id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+           p:dataSource-ref="dataSource"/>
+    <!--2编写通知：对事务进行增强，需要编写对切入点和具体执行事务细节-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- name:* 表示任意方法名称-->
+            <tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- 3编写aop，让spring自动对目标生成代理，需要使用AspectJ的表达式-->
+    <aop:config>
+        <!--3-1切入点-->
+        <aop:pointcut id="txPointCut" expression="execution(* edu.niit.dao.AccountDaoImpl.transfer(..))"/>
+        <!--3-2切面，将切入点与通知整合-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+    </aop:config>
+    <!--开启使用注解完成织入工作-->
+    <aop:aspectj-autoproxy/>
+</beans>

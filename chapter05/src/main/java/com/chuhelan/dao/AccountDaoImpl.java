@@ -1,4 +1,5 @@
 package com.chuhelan.dao;
+
 import com.chuhelan.domain.Account;
 import com.chuhelan.mapper.AccountRowMapper;
 import org.slf4j.Logger;
@@ -8,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -20,7 +23,9 @@ import java.util.List;
  * @create: 2021-03-30 10:48
  **/
 
+
 @Repository("accountDao")
+@Transactional
 public class AccountDaoImpl implements AccountDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -47,7 +52,7 @@ public class AccountDaoImpl implements AccountDao {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
 // return connection.prepareStatement(sql, (String[])args);
-                PreparedStatement pst = connection.prepareStatement(sql,new String[]{"id"});
+                PreparedStatement pst = connection.prepareStatement(sql, new String[]{"id"});
                 pst.setString(1, (String) args[0]);
                 pst.setDouble(2, (Double) args[1]);
                 return pst;
@@ -87,11 +92,29 @@ public class AccountDaoImpl implements AccountDao {
         Object[] args = {money, inUser};
         jdbcTemplate.update(sql, args);
 // 为测试事务而加入
-// int n=10/0;
+//        int n = 10 / 0;
 // 汇款人的操作
         sql = "update t_account set balance=balance - ?" + "where username= ?";
         Object[] args1 = {money, outUser};
         jdbcTemplate.update(sql, args1);
+    }
+
+    @Override
+    public boolean transfer(int outId, int inId, double money) {
+        String sql = "update t_account set balance=balance - ? where id=?";
+        Object[] args = {money, outId};
+        int n1 = jdbcTemplate.update(sql, args);
+
+        String sql1 = "update t_account set balance=balance + ? where id=?";
+        Object[] args1 = {money, inId};
+        int n2 = jdbcTemplate.update(sql1, args);
+
+        if (n1 == 1 && n2 == 1){
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     @Override
@@ -110,7 +133,7 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public List<Account> getAccountLike(String keywords) {
-        String sql = "select * from t_account where username like"+" '%"+keywords+"%' ";
+        String sql = "select * from t_account where username like" + " '%" + keywords + "%' ";
         return jdbcTemplate.query(sql, new AccountRowMapper());
     }
 }
