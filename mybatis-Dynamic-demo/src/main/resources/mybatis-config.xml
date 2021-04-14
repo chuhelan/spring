@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--mybatsi的主配置文件-->
+<configuration>
+    <properties resource="jdbc.properties"/>
+    <!--settings-->
+    <settings>
+        <!--开启驼峰式命名映射-->
+        <!--数据库中user_count会映射到实体中userCount-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--开启二级缓存-->
+        <!--<setting name="cacheEnabled" value="true"/>-->
+        <!--设置按需加载-->
+        <!--<setting name="lazyLoadingEnabled" value="false"/>-->
+    </settings>
+    <typeAliases>
+        <!--多个可以一样写-->
+        <!--<typeAlias type="com.chuhelan.domain.User" alias="user"/>-->
+        <package name="com.chuhelan.domain"/>
+    </typeAliases>
+    <plugins>
+        <!--注意：分页助手的插件配置在environments之前，
+        不记得则随便放入一个标签后，出错时将光标放在configuration上，会有提示-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+    </plugins>
+    <!--配置环境，默认环境为mysql-->
+    <environments default="mysql">
+        <!--配置id为mysq的数据库环境-->
+        <environment id="mysql">
+            <!--配置事务-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--配置数据源，数据库连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driverClassName}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--指定配置文件位置信息-->
+    <mappers>
+        <!--<mapper resource="com/chuhelan/dao/UserDao.xml"/>-->
+        <!--<mapper class="com.chuhelan.dao.UserDao"/>-->
+        <!--指定配置文件位置信息-->
+        <package name="com.chuhelan.dao"/>
+        <!--指定带有注解的dao接口所在的位置-->
+        <!--<package name="com.chuhelan.AnnoDao"/>-->
+    </mappers>
+</configuration>

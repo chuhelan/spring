@@ -4,6 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="jdbc.properties"/>
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="autoMappingBehavior" value="true"/>
+    </settings>
+    <typeAliases>
+<!--        <typeAlias type="com.chuhelan.domain.User" alias="User"/>-->
+        <package name="com.chuhelan.domain"/>
+    </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -16,6 +26,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/chuhelan/dao/UserDao.xml"/>
+        <!--<mapper resource="com/chuhelan/dao/UserDao.xml"/>-->
+        <package name="com.chuhelan.dao"/>
     </mappers>
 </configuration>

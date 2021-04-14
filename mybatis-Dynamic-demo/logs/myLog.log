@@ -1,0 +1,12 @@
+2021-04-13 09:13:32.001 +0800	INFO 	com.chuhelan.dao.UserDaoTest	47	main	[User(id=2, username=Tom, birthday=Sun Jan 02 00:00:00 CST 2000, sex=男, address=江苏无锡)]
+2021-04-13 09:43:53.619 +0800	INFO 	com.chuhelan.dao.UserDaoTest	57	main	[User(id=3, username=Rose, birthday=Mon Jan 02 00:00:00 CST 1995, sex=女, address=江苏南通)]
+2021-04-13 09:45:10.689 +0800	INFO 	com.chuhelan.dao.UserDaoTest	57	main	[User(id=3, username=Rose, birthday=Mon Jan 02 00:00:00 CST 1995, sex=女, address=江苏南通)]
+2021-04-13 09:45:23.803 +0800	INFO 	com.chuhelan.dao.UserDaoTest	57	main	[]
+2021-04-13 09:45:53.608 +0800	INFO 	com.chuhelan.dao.UserDaoTest	57	main	[User(id=2, username=Tom, birthday=Sun Jan 02 00:00:00 CST 2000, sex=男, address=江苏无锡), User(id=3, username=Rose, birthday=Mon Jan 02 00:00:00 CST 1995, sex=女, address=江苏南通)]
+2021-04-13 10:05:46.183 +0800	INFO 	com.chuhelan.dao.UserDaoTest	62	main	[]
+2021-04-13 10:06:07.343 +0800	INFO 	com.chuhelan.dao.UserDaoTest	61	main	[]
+2021-04-13 10:06:51.205 +0800	INFO 	com.chuhelan.dao.UserDaoTest	61	main	[]
+2021-04-13 10:29:39.002 +0800	INFO 	com.chuhelan.dao.UserDaoTest	80	main	更新了一条数据
+2021-04-13 10:37:33.042 +0800	INFO 	com.chuhelan.dao.UserDaoTest	80	main	更新了一条数据
+2021-04-13 10:39:56.483 +0800	INFO 	com.chuhelan.dao.UserDaoTest	80	main	更新了一条数据
+2021-04-13 11:11:08.979 +0800	INFO 	com.chuhelan.dao.UserDaoTest	87	main	查询到的信息为：[User(id=1, username=Max, birthday=Sat Jan 01 00:00:00 CST 2000, sex=male, address=中国台湾), User(id=2, username=Tom, birthday=Sun Jan 02 00:00:00 CST 2000, sex=男, address=江苏无锡)]

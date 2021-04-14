@@ -1,6 +1,7 @@
 package com.chuhelan.dao;
 
 import com.chuhelan.domain.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -20,5 +21,7 @@ public interface UserDao {
     int deleteUserById(Integer id);
 
     User findByMap(Map map);
+
+    User findByCondition(@Param("id") Integer id, @Param("username") String username);
 
 }

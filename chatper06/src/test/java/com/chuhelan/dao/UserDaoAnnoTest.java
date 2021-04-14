@@ -1,15 +1,15 @@
 package com.chuhelan.dao;
 
 import com.chuhelan.domain.User;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,10 +22,11 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserDaoTest {
+class UserDaoAnnoTest {
     SqlSessionFactory sqlSessionFactory;
     SqlSession session;
-    UserDao userDao;
+    UserDaoAnno userDao;
+    private Logger log = LoggerFactory.getLogger(UserDaoAnnoTest.class);
 
     @BeforeEach
     void setUp() throws IOException {
@@ -38,16 +39,13 @@ class UserDaoTest {
          * 理解为一个数据库连接*/
         session = sqlSessionFactory.openSession(true);
         /*4、通过SqlSession获取接口的实现类对象UserDao*/
-        userDao = session.getMapper(UserDao.class);
+        userDao = session.getMapper(UserDaoAnno.class);
+
     }
 
 
     @AfterEach
     void tearDown() {
-//        要么在setUp()这个语句加入参数true
-//        SqlSession session = sqlSessionFactory.openSession(true);
-//        要么使用session.commit()
-//        session.commit();
         session.close();
     }
 
@@ -58,39 +56,16 @@ class UserDaoTest {
     }
 
     @Test
-    void findUserById() {
-        Integer id = 2;
-        User user = userDao.findUserById(id);
-        System.out.println(user);
-    }
-
-    @Test
-    void updateUser() throws ParseException {
-        String birthdayStr = "2000-12-25";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date birthday = sdf.parse(birthdayStr);
-        User user = new User();
-        user.setId(1);
-        user.setUsername("Alex");
-        user.setBirthday(birthday);
-        user.setSex("female");
-        user.setAddress("LA");
-        System.out.println("Info before change :");
-
-        User user1 = userDao.findUserById(user.getId());
-//        complete change
-        System.out.println(user1);
-        userDao.updateUser(user);
-        System.out.println("Info after change : ");
-        user1 = userDao.findUserById(user.getId());
-        System.out.println(user1);
-    }
-
-    @Test
-    void insertUser() throws Exception {
+    void insertUser() {
         String birthdayStr = "1995-3-08";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date birthday = sdf.parse(birthdayStr);
+        Date birthday = null;
+        try {
+            birthday = sdf.parse(birthdayStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            log.error("插入出现了问题");
+        }
         User user = new User("HAM", birthday, "female", "united states of america");
         System.out.println(user);
         userDao.insertUser(user);
@@ -98,28 +73,30 @@ class UserDaoTest {
     }
 
     @Test
+    void updateUser() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String birStr = "2002-1-1";
+        Date birthday = sdf.parse(birStr);
+        User user = new User(11, "Jerry", birthday, "男", "上海");
+        userDao.updateUser(user);
+        User userById = userDao.findUserById(11);
+        System.out.println(userById);
+
+    }
+
+    @Test
     void deleteUserById() {
         System.out.println("Before Delete User");
         findAll();
-        Integer id = 5;
+        Integer id = 4;
         userDao.deleteUserById(id);
         System.out.println("delete success!");
         findAll();
     }
 
     @Test
-    void findByMap() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("id",4);
-        map.put("username","HAM");
-        User user = userDao.findByMap(map);
+    void findUserById() {
+        User user = userDao.findUserById(12);
         System.out.println(user);
     }
-
-    @Test
-    void findByCondition(){
-        User user = userDao.findByCondition(2,"Tom");
-        System.out.println(user);
-    }
-
 }
