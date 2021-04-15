@@ -86,6 +86,10 @@ class UserDaoTest {
         List<User> users = userDao.findUserByIds(ids);
         log.info("查询到的信息为："+users.toString());
     }
+
+    @Test
+    void insertBatchUsers(){
+    }
 }
 
 

@@ -40,4 +40,6 @@ public interface UserDao {
 //    })
 //    int batchInsert(@Param("list") List<BrandInfo> brandInfos);
 
+    int insertBatchUsers(List<User> users);
+
 }
