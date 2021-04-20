@@ -4,9 +4,58 @@
 <mapper namespace="com.chuhelan.dao.UserDao">
 
     <select id="findAll" resultType="com.chuhelan.domain.User">
-        select * from t_user
+        select *
+        from t_user
     </select>
-    <select id="findById" resultType="com.chuhelan.domain.User">
-        select * from t_user where id=#{id}
+
+    <resultMap id="userMap" type="com.chuhelan.domain.User">
+        <id property="id" column="id"/>
+        <result column="username" property="username"/>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"/>
+        <result property="address" column="address"/>
+    </resultMap>
+
+    <select id="findById" resultMap="userMap">
+        select *
+        from t_user
+        where id = #{id}
+    </select>
+    <!--嵌套结果 分布查询，采用懒加载，role属性用到就加载，用不到就不加载-->
+    <resultMap id="userRoleMap" type="com.chuhelan.domain.User"
+               autoMapping="false" extends="userMap">
+        <collection property="roles" ofType="com.chuhelan.domain.Role">
+            <id property="id" column="rid"/>
+            <result property="name" column="name"/>
+            <result property="description" column="description"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="userRoleMapBySelect" type="com.chuhelan.domain.User"
+               extends="userMap" autoMapping="false">
+        <collection property="roles" ofType="com.chuhelan.domain.Role"
+                    select="com.chuhelan.dao.RoleDao.findRoleByUserId" column="id"/>
+    </resultMap>
+
+    <select id="findByIdWithRoles" resultMap="userRoleMap">
+        select u.id,
+               u.username,
+               u.birthday,
+               u.sex,
+               u.address,
+               r.id rid,
+               r.name,
+               r.description
+        from t_user u,
+             t_role r,
+             t_user_role ur
+        where ur.role_id = r.id
+          and ur.user_id = u.id
+          and u.id = #{id}
+    </select>
+    <select id="findByUsernameLike" resultMap="userRoleMapBySelect">
+        select id, username, birthday, sex, address
+        from t_user
+        where username like concat('%', #{keyword}, '%')
     </select>
 </mapper>

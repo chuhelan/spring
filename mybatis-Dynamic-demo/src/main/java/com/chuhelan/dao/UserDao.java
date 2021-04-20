@@ -30,16 +30,6 @@ public interface UserDao {
 
     List<User> findUserByIds(@Param("ids") Integer[] ids);
 
-//    @Insert({"<script> ",
-//            "insert into brand_info(brand_name, brand_founder, brand_description, brand_country) values",
-//            "<foreach collection='list' item='brandInfo' separator=','> ",
-//            "(#{brandInfo.brandName},#{brandInfo.brandFounder}, #{brandInfo.brandDescription}, #{brandInfo.brandCountry}) ",
-//            "</foreach> ",
-//            "</script>"
-//
-//    })
-//    int batchInsert(@Param("list") List<BrandInfo> brandInfos);
-
     int insertBatchUsers(List<User> users);
 
 }

@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -23,4 +24,8 @@ public class User implements Serializable {
     private Date birthday;
     private String sex;
     private String address;
+    private List<Role> roles;
+
+
+
 }

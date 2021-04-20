@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chuhelan.dao.UserDao">
+
+    <insert id="insertBatchUsers" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user values
+        <foreach collection="list" separator="," item="user">
+            (null,#{user.username},#{user.birthday},#{user.sex},#{user.address})
+        </foreach>
+    </insert>
+
     <update id="updateUser">
         update t_user
         <set>
@@ -49,9 +57,10 @@
 
     <select id="findUserByIds" resultType="com.chuhelan.domain.User">
         select * from t_user where id in
-            <foreach collection="ids" item="id" open="(" separator="," close=")">
-                #{id}
-            </foreach>
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
+
 
 </mapper>

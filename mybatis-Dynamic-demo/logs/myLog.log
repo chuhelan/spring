@@ -1,1 +1,1 @@
-2021-04-15 13:25:48.490 +0800	INFO 	com.chuhelan.dao.UserDaoTest	87	main	查询到的信息为：[User(id=1, username=Max, birthday=Sat Jan 01 00:00:00 CST 2000, sex=male, address=中国台湾), User(id=2, username=Tom, birthday=Sun Jan 02 00:00:00 CST 2000, sex=男, address=江苏无锡)]
+2021-04-18 15:53:21.799 +0800	INFO 	com.chuhelan.dao.UserDaoTest	87	main	查询到的信息为：[User(id=1, username=John, birthday=Wed Jan 02 00:00:00 CST 2002, sex=男, address=江苏南京), User(id=2, username=Tom, birthday=Sun Jan 02 00:00:00 CST 2000, sex=男, address=江苏无锡)]

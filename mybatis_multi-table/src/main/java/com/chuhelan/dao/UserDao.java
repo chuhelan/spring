@@ -9,4 +9,8 @@ public interface UserDao {
     List<User> findAll();
 
     User findById(Integer id);
+
+    User findByIdWithRoles(Integer id);
+
+    List<User> findByUsernameLike(String keyword);
 }

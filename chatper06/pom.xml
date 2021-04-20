@@ -15,6 +15,11 @@
     <!--打包方式-->
     <packaging>jar</packaging>
     <dependencies>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.1</version>
+        </dependency>
         <!--数据库连接池依赖-->
         <dependency>
             <groupId>com.alibaba</groupId>

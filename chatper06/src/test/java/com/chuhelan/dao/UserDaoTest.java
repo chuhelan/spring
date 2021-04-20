@@ -26,29 +26,31 @@ class UserDaoTest {
     SqlSessionFactory sqlSessionFactory;
     SqlSession session;
     UserDao userDao;
+    InputStream inputStream;
 
     @BeforeEach
     void setUp() throws IOException {
         /*1 、加载配置文件*/
         String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
+        inputStream = Resources.getResourceAsStream(resource);
         /*2、根据配置文件创建SqlSessionFactory工厂对象*/
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         /*3、通过SqlSession创建session核心接口（发送sql语句
          * 理解为一个数据库连接*/
-        session = sqlSessionFactory.openSession(true);
+        session = sqlSessionFactory.openSession();
         /*4、通过SqlSession获取接口的实现类对象UserDao*/
         userDao = session.getMapper(UserDao.class);
     }
 
 
     @AfterEach
-    void tearDown() {
+    void tearDown() throws IOException {
 //        要么在setUp()这个语句加入参数true
 //        SqlSession session = sqlSessionFactory.openSession(true);
 //        要么使用session.commit()
 //        session.commit();
         session.close();
+        inputStream.close();
     }
 
     @Test
