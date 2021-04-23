@@ -19,3 +19,4 @@
 2021-04-20 10:50:56  [ main:0 ] - [ INFO ]  根据用户id查询角色信息：[Role(id=1, name=总经理, description=部门负责人), Role(id=2, name=CEO, description=执行官)]
 2021-04-20 11:00:30  [ main:0 ] - [ INFO ]  根据用户id查询角色信息：[Role(id=1, name=总经理, description=部门负责人), Role(id=2, name=CEO, description=执行官)]
 2021-04-20 11:01:51  [ main:0 ] - [ INFO ]  查询姓名中有o的用户：[User(id=2, username=Tom, birthday=Sun Jan 02 00:00:00 CST 2000, sex=男, address=江苏无锡, roles=[Role(id=1, name=总经理, description=部门负责人), Role(id=3, name=程序员, description=写代码的人), Role(id=3, name=程序员, description=写代码的人)]), User(id=3, username=Rose, birthday=Mon Jan 02 00:00:00 CST 1995, sex=女, address=江苏南通, roles=[])]
+2021-04-20 14:23:05  [ main:0 ] - [ INFO ]  [Role(id=1, name=总经理, description=部门负责人), Role(id=2, name=CEO, description=执行官), Role(id=3, name=程序员, description=写代码的人), Role(id=4, name=厨师, description=烹饪的人)]
