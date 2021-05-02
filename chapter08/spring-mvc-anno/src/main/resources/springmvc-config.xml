@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <!--自动扫描包，让指定包下的注解生效，由IoC容器统一管理-->
+
+    <context:component-scan base-package="com.chuhelan.controller"/>
+    <!--注意：Spring4之后可以不配置映射器和适配器、视图解析器，它会使用Spring内部默认
+    的配置来完成响应的工作。
+    此处映射器和适配器已经省略，如果没有省略，则下面的语句必须在映射器和适配器之后
+    才能达到静态资源不处理-->
+    <!--让springMVC不处理静态资源-->
+    <mvc:default-servlet-handler />
+    <mvc:annotation-driven />
+    <!--视图解析器-->
+    <bean id="internalResourceViewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+<!--    &lt;!&ndash;配置处理器Handle，映射“/hello”的请求&ndash;&gt;-->
+<!--    <bean name="/hello" class="com.chuhelan.controller.HelloController"/>-->
+
+</beans>

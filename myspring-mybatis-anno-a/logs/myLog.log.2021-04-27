@@ -1,0 +1,6 @@
+2021-04-27 08:33:08  [ main:0 ] - [ INFO ]  HikariPool-1 - Starting...
+2021-04-27 08:33:09  [ main:977 ] - [ INFO ]  HikariPool-1 - Start completed.
+2021-04-27 08:33:10  [ main:1306 ] - [ INFO ]  查询所有用户
+2021-04-27 08:33:10  [ main:1306 ] - [ INFO ]  [Account(id=1, username=张三, balance=3800.0), Account(id=2, username=John, balance=10600.0), Account(id=3, username=Jack, balance=4200.0), Account(id=4, username=Tom, balance=1000.0), Account(id=5, username=Mike, balance=10200.0), Account(id=12, username=Jerry, balance=10000.0)]
+2021-04-27 08:33:10  [ SpringContextShutdownHook:1313 ] - [ INFO ]  HikariPool-1 - Shutdown initiated...
+2021-04-27 08:33:10  [ SpringContextShutdownHook:1323 ] - [ INFO ]  HikariPool-1 - Shutdown completed.

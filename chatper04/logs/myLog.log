@@ -1,10 +1,5 @@
-2021-04-0422:08:43[main:0]-[INFO]{dataSource-1} inited
-2021-04-0422:08:43[main:180]-[INFO]后台存储数据：User{id=14, account='aaa', password='111'}
-2021-04-0422:08:43[SpringContextShutdownHook:199]-[INFO]{dataSource-1} closing ...
-2021-04-0422:08:43[SpringContextShutdownHook:216]-[INFO]{dataSource-1} closed
-2021-04-0422:09:16[main:0]-[INFO]HikariPool-1 - Starting...
-2021-04-0422:09:16[main:551]-[INFO]HikariPool-1 - Start completed.
-2021-04-0422:09:17[main:644]-[INFO]后台存储数据：User{id=15, account='李阳', password='123'}
-2021-04-0422:09:17[main:644]-[INFO]User{id=15, account='李阳', password='123'}
-2021-04-0422:09:17[SpringContextShutdownHook:663]-[INFO]HikariPool-1 - Shutdown initiated...
-2021-04-0422:09:17[SpringContextShutdownHook:670]-[INFO]HikariPool-1 - Shutdown completed.
+2021-05-0212:12:34[main:0]-[INFO]{dataSource-1} inited
+2021-05-0212:12:35[main:369]-[INFO]插入数据：Account{id=13, username='Jack', balance=10000.0}
+2021-05-0212:12:35[main:403]-[INFO]插入数据：Account{id=14, username='Rose', balance=500.0}
+2021-05-0212:12:35[SpringContextShutdownHook:579]-[INFO]{dataSource-1} closing ...
+2021-05-0212:12:35[SpringContextShutdownHook:595]-[INFO]{dataSource-1} closed
