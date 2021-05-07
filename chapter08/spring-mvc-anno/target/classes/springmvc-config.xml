@@ -8,7 +8,7 @@
 
     <!--自动扫描包，让指定包下的注解生效，由IoC容器统一管理-->
 
-    <context:component-scan base-package="com.chuhelan.controller"/>
+    <context:component-scan base-package="com.chuhelan"/>
     <!--注意：Spring4之后可以不配置映射器和适配器、视图解析器，它会使用Spring内部默认
     的配置来完成响应的工作。
     此处映射器和适配器已经省略，如果没有省略，则下面的语句必须在映射器和适配器之后
@@ -23,7 +23,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--配置处理器Handle，映射“/hello”的请求-->
-    <bean name="/hello" class="com.chuhelan.controller.HelloController"/>
+<!--    &lt;!&ndash;配置处理器Handle，映射“/hello”的请求&ndash;&gt;-->
+<!--    <bean name="/hello" class="com.chuhelan.controller.HelloController"/>-->
 
 </beans>
