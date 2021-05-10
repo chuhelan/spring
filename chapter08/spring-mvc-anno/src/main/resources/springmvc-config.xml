@@ -14,16 +14,28 @@
     此处映射器和适配器已经省略，如果没有省略，则下面的语句必须在映射器和适配器之后
     才能达到静态资源不处理-->
     <!--让springMVC不处理静态资源-->
-    <mvc:default-servlet-handler />
-    <mvc:annotation-driven />
+    <mvc:default-servlet-handler/>
+    <!--    <mvc:annotation-driven />-->
+
+    <mvc:annotation-driven>
+        <!--自定义消息转换器-->
+        <mvc:message-converters register-defaults="true">
+            <!--自定义消息转换器，设置编码为utf-8，防止responseEntity<String>转换为json对象输出乱码-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg index="0" value="utf-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
     <!--视图解析器-->
     <bean id="internalResourceViewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
-<!--    &lt;!&ndash;配置处理器Handle，映射“/hello”的请求&ndash;&gt;-->
-<!--    <bean name="/hello" class="com.chuhelan.controller.HelloController"/>-->
+    <!--    &lt;!&ndash;配置处理器Handle，映射“/hello”的请求&ndash;&gt;-->
+    <!--    <bean name="/hello" class="com.chuhelan.controller.HelloController"/>-->
 
 </beans>

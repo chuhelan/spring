@@ -12,7 +12,7 @@
     <title>显示水果数据</title>
 </head>
 <body>
-<table border="1px" witdth="600px">
+<table border="1px" width="600px">
     <thead>
     <th>名称</th>
     <th>价格</th>
