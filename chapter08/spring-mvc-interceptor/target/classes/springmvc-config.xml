@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--自动扫描包，让指定包下的注解生效，由IoC容器统一管理-->
+    <context:component-scan base-package="com.chuhelan.spring"/>
+    <!--注意：Spring4之后可以不配置映射器和适配器、视图解析器，它会使用Spring内部默认
+    的配置来完成响应的工作。
+    此处映射器和适配器已经省略，如果没有省略，则下面的语句必须在映射器和适配器之后
+    才能达到静态资源不处理-->
+    <!--让springMVC不处理静态资源-->
+    <mvc:default-servlet-handler />
+    <!--让SpringMVC不处理静态资源，也可以使用下面方法-->
+    <!--指定路径的静态资源不被前端控制器拦截-->
+    <!--
+	<mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/images/**" location="/images"/>
+	-->
+    <!--配置注解驱动-->
+    <mvc:annotation-driven>
+        <!--自定义消息转换器-->
+        <mvc:message-converters register-defaults="true">
+            <!--自定义消息转换器，设置编码为utf-8，防止responseEntity<String>转换为json对象输出乱码-->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg index="0" value="utf-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!--注册拦截器-->
+    <mvc:interceptors>
+        <!--使用bean直接定义在<mvc:intercertors>下面的Interceptor将拦截所有请求-->
+       <!-- <bean class="com.example.spring.interceptor.MyInterceptor" />-->
+        <mvc:interceptor>
+            <!--注意:下面的配置顺序是固定的不能调整，否则会报错-->
+            <!--配置拦截器作用的路径,此方法表示对所有路径都拦截-->
+            <mvc:mapping path="/**"/>
+            <!--配置不需要拦截器作用的路径-->
+            <!--<mvc:exclude-mapping path=""/>-->
+            <!--定义在<mvc:interceptor>下面的，表示对匹配路径的请求才进行拦截-->
+            <bean class="com.chuhelan.spring.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <!--表示对指定的/hello请求进行拦截-->
+            <mvc:mapping path="/hello"/>
+            <!--配置不需要拦截器作用的路径-->
+            <!--<mvc:exclude-mapping path=""/>-->
+            <!--定义在<mvc:interceptor>下面的，表示对匹配路径的请求才进行拦截-->
+            <bean class="com.chuhelan.spring.interceptor.MyInterceptor02"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/userController/**"/>
+            <bean class="com.chuhelan.spring.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--视图解析器-->
+    <bean id="internalResourceViewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
