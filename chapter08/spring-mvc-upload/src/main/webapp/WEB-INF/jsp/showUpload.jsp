@@ -16,7 +16,7 @@
 上传文件：<br>
 <c:forEach items="${fileList}" var="file">
     文件名为：${file} <br>
-    <img src="upload/${file}" style="height: 200px;width:200px;border-radius: 25px; box-shadow: 0px 0px 12px #E0E0E0"/> <br>
+    <img src="upload/${file}" style="height: 200px;width:200px;border-radius: 100%; box-shadow: 0px 0px 12px #E0E0E0"/> <br>
 </c:forEach>
 </body>
 </html>
